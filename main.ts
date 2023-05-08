@@ -1,3 +1,3 @@
 const logger = require("./logger.ts");
 
-logger.sayHello("Mohammad");
+logger.sayHello("Parisa");
