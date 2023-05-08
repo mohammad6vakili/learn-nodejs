@@ -1,2 +1,3 @@
-console.log("hi");
+const logger = require("./logger");
 
+logger.sayHello("Mohammad");
