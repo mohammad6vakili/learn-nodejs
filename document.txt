@@ -1,5 +1,13 @@
+// versions ----------------------------------------
 package versions model:
 4.1.5 => Major.Minor.Patch
 Major: big changes, rewrite package and ...
 Minor: add new fetaure
 Patch: fix bug in current version
+
+// scripts -----------------------------------------
+if(npm script){
+    npm {script_name} => npm start
+}else{
+    npm run {script_name} => npm run build
+}
