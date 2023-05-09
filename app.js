@@ -86,12 +86,30 @@ const fs = require("fs");
 
 const server = http.createServer((req, res) => {
   let { url, method, headers } = req;
-  console.log(`url: ${url}`);
-  console.log(`method: ${method}`);
-  console.log(`headers: ${headers}`);
-  res.write(
-    "<html><head><title>First Node Project</title></head><body><h1>hello world!</h1></body></html>"
-  );
+
+  if (url === "/login") {
+    let bodyData = [];
+    res.statusCode = 302;
+    res.setHeader("Location", "/");
+    req.on("data", (chunk) => {
+      bodyData.push(chunk);
+    });
+    req.on("end", () => {
+      const parsedBody = Buffer.concat(bodyData).toString();
+      let password = parsedBody.split("=")[1];
+      fs.writeFileSync("password.txt", password);
+    });
+  } else if (url === "/") {
+    res.write("<html><head><title>Login</title></head><body><h1>Login</h1>");
+    res.write(
+      "<form method='POST' action='/login'><input name='password' type='text'/><input type='submit'/></form>"
+    );
+    res.write("</body></html>");
+  } else {
+    res.write(
+      "<html><head><title>Not Found</title></head><body><h1>Not Found</h1></body></html>"
+    );
+  }
   res.end();
 });
 
