@@ -12,9 +12,7 @@ const addUser = (name, mobile, email) => {
       mobile,
       email,
     });
-    fs.writeFile("users.json", JSON.stringify(users), (err) => {
-      console.log(chalk.green("User Saved Successfully!"));
-    });
+    saveUsers(users);
   }
 };
 
@@ -26,6 +24,12 @@ const loadUsers = () => {
     console.log("contacts load error", err);
     return [];
   }
+};
+
+const saveUsers = (users) => {
+  fs.writeFile("users.json", JSON.stringify(users), (err) => {
+    console.log(chalk.green("User Saved Successfully!"));
+  });
 };
 
 module.exports = {
