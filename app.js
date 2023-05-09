@@ -81,36 +81,55 @@
 // ev.emit("sayBye", "Bye");
 
 // http ------------------------------------------------------
-const http = require("http");
-const fs = require("fs");
+// const http = require("http");
+// const fs = require("fs");
 
-const server = http.createServer((req, res) => {
-  let { url, method, headers } = req;
+// const server = http.createServer((req, res) => {
+//   let { url, method, headers } = req;
 
-  if (url === "/login") {
-    let bodyData = [];
-    res.statusCode = 302;
-    res.setHeader("Location", "/");
-    req.on("data", (chunk) => {
-      bodyData.push(chunk);
-    });
-    req.on("end", () => {
-      const parsedBody = Buffer.concat(bodyData).toString();
-      let password = parsedBody.split("=")[1];
-      fs.writeFileSync("password.txt", password);
-    });
-  } else if (url === "/") {
-    res.write("<html><head><title>Login</title></head><body><h1>Login</h1>");
-    res.write(
-      "<form method='POST' action='/login'><input name='password' type='text'/><input type='submit'/></form>"
-    );
-    res.write("</body></html>");
-  } else {
-    res.write(
-      "<html><head><title>Not Found</title></head><body><h1>Not Found</h1></body></html>"
-    );
-  }
-  res.end();
+//   if (url === "/login") {
+//     let bodyData = [];
+//     res.statusCode = 302;
+//     res.setHeader("Location", "/");
+//     req.on("data", (chunk) => {
+//       bodyData.push(chunk);
+//     });
+//     req.on("end", () => {
+//       const parsedBody = Buffer.concat(bodyData).toString();
+//       let password = parsedBody.split("=")[1];
+//       fs.writeFileSync("password.txt", password);
+//     });
+//   } else if (url === "/") {
+//     res.write("<html><head><title>Login</title></head><body><h1>Login</h1>");
+//     res.write(
+//       "<form method='POST' action='/login'><input name='password' type='text'/><input type='submit'/></form>"
+//     );
+//     res.write("</body></html>");
+//   } else {
+//     res.write(
+//       "<html><head><title>Not Found</title></head><body><h1>Not Found</h1></body></html>"
+//     );
+//   }
+//   res.end();
+// });
+
+// server.listen(3000);
+
+// express ------------------------------------------------------
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
-server.listen(3000);
+app.get("/login", (req, res) => {
+  res.send("Login to your account");
+});
+
+app.get("*", (req, res) => {
+  res.send("Not Found!");
+});
+
+app.listen(3000);
