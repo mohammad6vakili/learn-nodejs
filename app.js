@@ -120,16 +120,14 @@ const express = require("express");
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.use((req, res, next) => {
+  console.log("First Middleware");
+  next();
 });
 
-app.get("/login", (req, res) => {
-  res.send("Login to your account");
-});
-
-app.get("*", (req, res) => {
-  res.send("Not Found!");
+app.use((req, res, next) => {
+  console.log("Second Middleware");
+  res.send("<h1>Hello World!</h1>");
 });
 
 app.listen(3000);
