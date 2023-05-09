@@ -1,5 +1,5 @@
 const yargs = require("yargs");
-const { addUser } = require("./users");
+const { addUser, listUsers } = require("./users");
 
 yargs.command({
   command: "create",
@@ -27,6 +27,15 @@ yargs.command({
   },
   handler: ({ name, mobile, email }) => {
     addUser(name, mobile, email);
+  },
+});
+
+yargs.command({
+  command: "list",
+  aliases: ["l"],
+  describe: "list users",
+  handler: () => {
+    listUsers();
   },
 });
 

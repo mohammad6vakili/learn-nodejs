@@ -16,6 +16,15 @@ const addUser = (name, mobile, email) => {
   }
 };
 
+const listUsers = () => {
+  const users = loadUsers();
+  if (users.length === 0) {
+    console.log(chalk.red("There is no User!"));
+  } else {
+    console.table(users);
+  }
+};
+
 const loadUsers = () => {
   try {
     const users = JSON.parse(fs.readFileSync("users.json").toString());
@@ -34,4 +43,5 @@ const saveUsers = (users) => {
 
 module.exports = {
   addUser,
+  listUsers,
 };
