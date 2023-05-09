@@ -120,14 +120,15 @@ const express = require("express");
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log("First Middleware");
-  next();
+app.use("/message", (req, res) => {
+  console.log(req.body);
+  res.redirect("/");
 });
 
-app.use((req, res, next) => {
-  console.log("Second Middleware");
-  res.send("<h1>Hello World!</h1>");
+app.use("/", (req, res) => {
+  res.send(
+    "<form method='POST' action='/message'><input type='text' name='message'/><input type='submit'/></form>"
+  );
 });
 
 app.listen(3000);
