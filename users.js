@@ -25,6 +25,17 @@ const listUsers = () => {
   }
 };
 
+const removeUser = (name) => {
+  let users = loadUsers();
+  isUserExist = users.find((user) => user.name === name);
+  if (!isUserExist) {
+    console.log(chalk.red("User doesn't exist!"));
+  } else {
+    let filteredUsers = users.filter((user) => user.name !== name);
+    saveUsers(filteredUsers);
+  }
+};
+
 const loadUsers = () => {
   try {
     const users = JSON.parse(fs.readFileSync("users.json").toString());
@@ -44,4 +55,5 @@ const saveUsers = (users) => {
 module.exports = {
   addUser,
   listUsers,
+  removeUser,
 };

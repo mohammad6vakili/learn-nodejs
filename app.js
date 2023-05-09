@@ -1,5 +1,5 @@
 const yargs = require("yargs");
-const { addUser, listUsers } = require("./users");
+const { addUser, listUsers, removeUser } = require("./users");
 
 yargs.command({
   command: "create",
@@ -36,6 +36,23 @@ yargs.command({
   describe: "list users",
   handler: () => {
     listUsers();
+  },
+});
+
+yargs.command({
+  command: "remove",
+  aliases: ["r"],
+  describe: "remove user from users list",
+  builder: {
+    name: {
+      describe: "user name",
+      demandOption: true,
+      type: "string",
+      alias: "n",
+    },
+  },
+  handler: ({ name }) => {
+    removeUser(name);
   },
 });
 
