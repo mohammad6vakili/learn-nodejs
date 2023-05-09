@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mohammad6vakili/learn-nodejs#readme",
   "dependencies": {
+    "chalk": "^4.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
