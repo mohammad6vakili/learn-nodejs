@@ -24,9 +24,16 @@ const renameFile = (old_path: string, new_path: string) => {
   });
 };
 
+const removeFile = (path: string) => {
+  fs.unlink(path, (err: any) => {
+    console.log(err);
+  });
+};
+
 module.exports = {
   writeTextFile,
   writeTextFileSync,
   appendTextFile,
   renameFile,
+  removeFile,
 };
