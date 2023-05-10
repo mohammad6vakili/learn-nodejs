@@ -116,26 +116,18 @@
 // server.listen(3000);
 
 // express ------------------------------------------------------
-const fs = require("fs");
 
 const express = require("express");
 const bodyParser = require("body-parser");
+
+const homeRoutes = require("./routes/home");
+const actionRoutes = require("./routes/action");
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  res.send(
-    "<form method='POST' action='/password'><input type='text' name='password'/><input type='submit'/></form>"
-  );
-});
-
-app.post("/password", (req, res) => {
-  fs.writeFile("password.txt", req.body.password, (err) => {
-    console.log(err);
-    res.redirect("/");
-  });
-});
+app.use(homeRoutes);
+app.use(actionRoutes);
 
 app.listen(3000);
