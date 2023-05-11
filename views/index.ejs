@@ -13,9 +13,22 @@
     </title>
 </head>
 
-<body>
-    <div class="mamad">
-        <button class="btn btn-danger">click</button>
+<body class="rtl">
+    <div class="form-group">
+        <h1>کارهای <small>روزمره</small></h1>
+        <form action="/admin/add-todo" role="form" method="POST">
+            <div class="input-group">
+                <input type="text" name="todo" id="todo" class="form-control w-50"
+                    placeholder="کار مورد نظر را تایپ کنید">
+            </div>
+            <div class="input-group-prepend">
+                <button type="submit" class="btn btn-primary fa fa-plus" />
+            </div>
+        </form>
+        <div class="mx-auto w-100 mb-3 alert alert-primary row">
+            <p class="d-inline col">کارهای انجام شده : <span class="badge badge-primary badge-pill">0</span></p>
+            <p class="d-inline col">کارهای باقی مانده : <span class="badge badge-warning badge-pill">10</span></p>
+        </div>
     </div>
 </body>
 
