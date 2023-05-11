@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const adminRoutes = require("./routes/admin");
+
 const { setStatics } = require("./utils/setStatics");
 
 const app = express();
@@ -16,6 +18,7 @@ app.set("views", "views");
 setStatics(app);
 
 // routes
+app.use("/admin", adminRoutes);
 app.get("/", (req, res) => {
   res.render("index", { pageTitle: "مدیریت کارها" });
 });
