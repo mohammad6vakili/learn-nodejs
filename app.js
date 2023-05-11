@@ -15,6 +15,11 @@ app.set("views", "views");
 // statics
 setStatics(app);
 
+// routes
+app.get("/", (req, res) => {
+  res.render("index", { pageTitle: "صفحه اصلی" });
+});
+
 app.listen(3000, () => {
   console.log("Server is running...");
 });
