@@ -1,10 +1,10 @@
+const path = require("path");
+
 const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send(
-    "<form method='POST' action='/password'><input type='text' name='password'/><input type='submit'/></form>"
-  );
+  res.sendFile(path.join(__dirname, "../", "views", "index.html"));
 });
 
 router.get("/hello", (req, res) => {
