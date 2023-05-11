@@ -9,7 +9,7 @@ body {
 .form-group {
   width: 50%;
   text-align: center;
-  padding-bottom: 25px;
+  padding: 25px 0;
 }
 .form-group form {
   position: relative;

@@ -17,7 +17,7 @@ setStatics(app);
 
 // routes
 app.get("/", (req, res) => {
-  res.render("index", { pageTitle: "صفحه اصلی" });
+  res.render("index", { pageTitle: "مدیریت کارها" });
 });
 
 app.listen(3000, () => {
