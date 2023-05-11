@@ -117,11 +117,15 @@
 
 // express ------------------------------------------------------
 
+const path = require("path");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 
 const homeRoutes = require("./routes/home");
 const actionRoutes = require("./routes/action");
+
+const rootDir = require("./utils/path");
 
 const app = express();
 
@@ -129,5 +133,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(homeRoutes);
 app.use(actionRoutes);
+app.use((req, res) => {
+  res.sendFile(path.join(rootDir, "views", "404.html"));
+});
 
 app.listen(3000);
