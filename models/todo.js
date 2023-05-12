@@ -4,6 +4,8 @@ const path = require("path");
 const rootDir = require("../utils/path");
 const filePath = path.join(rootDir, "data", "todos.json");
 
+const todoUtils = require("../utils/todos");
+
 class Todo {
   constructor(id, text, completed = false) {
     this.id = id;
@@ -12,18 +14,10 @@ class Todo {
   }
 
   save(callback) {
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        return [];
-      }
-      let todos = JSON.parse(data);
+    todoUtils.getTodos((todos) => {
       todos.push(this);
-      fs.writeFile(filePath, JSON.stringify(todos), (err) => {
-        if (err) {
-          callback(err);
-        } else {
-          return callback(null);
-        }
+      todoUtils.saveTodos(todos, (err) => {
+        callback(err);
       });
     });
   }
