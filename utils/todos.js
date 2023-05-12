@@ -29,3 +29,9 @@ exports.getRemainingTodos = (callback) => {
     callback(todos.filter((todo) => todo.completed === false));
   });
 };
+
+exports.getCompletedTodos = (callback) => {
+  this.getTodos((todos) => {
+    callback(todos.filter((todo) => todo.completed === true));
+  });
+};

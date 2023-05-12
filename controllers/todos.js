@@ -1,10 +1,17 @@
 const Todo = require("../models/todo");
+const todoUtils = require("../utils/todos");
 
 exports.getIndex = (req, res) => {
-  Todo.fetchTodos((todos) => {
-    res.render("index", {
-      pageTitle: "مدیریت کارها",
-      todos,
+  todoUtils.getCompletedTodos((completedTodos) => {
+    todoUtils.getRemainingTodos((remainingTodos) => {
+      Todo.fetchTodos((todos) => {
+        res.render("index", {
+          pageTitle: "مدیریت کارها",
+          todos,
+          completedTodos,
+          remainingTodos,
+        });
+      });
     });
   });
 };
