@@ -13,3 +13,13 @@ exports.addTodo = (req, res) => {
     }
   });
 };
+
+exports.deleteTodo = (req, res) => {
+  Todo.deleteTodo(req.params.id, (err) => {
+    if (!err) {
+      res.redirect("/");
+    } else {
+      console.log(err);
+    }
+  });
+};

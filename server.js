@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 
 const adminRoutes = require("./routes/admin");
+const indexRoutes = require("./routes/index");
 const { setStatics } = require("./utils/setStatics");
 
 // body parser middleware
@@ -17,10 +18,7 @@ setStatics(app);
 
 // routes
 app.use("/admin", adminRoutes);
-
-app.get("/", (req, res) => {
-  res.render("index", { pageTitle: "مدیریت کارها", todos: [] });
-});
+app.use(indexRoutes);
 
 // create server
 app.listen(3000, () => {
