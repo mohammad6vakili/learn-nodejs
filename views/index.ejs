@@ -32,12 +32,14 @@
             <ul class="list-unstyled">
                 <% for(let todo of todos){ %>
                     <li>
-                        <div class="alert alert-secondary">
+                        <div class="alert <%= todo.completed ? " alert-success" : "alert-secondary" %>">
                             <%= todo.text %>
                                 <a href="/admin/delete-todo/<%= todo.id %>" class="close fa fa-trash"
                                     style="color:red"></a>
-                                <a href="/admin/complete-todo/<%= todo.id %>" class="close fa fa-check-square mr-2"
-                                    style="color:green"></a>
+                                <% if(!todo.completed){ %>
+                                    <a href="/admin/complete-todo/<%= todo.id %>" class="close fa fa-check-square mr-2"
+                                        style="color:green"></a>
+                                    <% } %>
                         </div>
                     </li>
                     <% } %>
