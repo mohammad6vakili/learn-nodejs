@@ -1,0 +1,20 @@
+<% if(todos.length> 0){ %>
+    <ul class="list-unstyled">
+        <% for(let todo of todos){ %>
+            <li>
+                <div class="alert <%= todo.completed ? " alert-success" : "alert-secondary" %>">
+                    <%= todo.text %>
+                        <a href="/admin/delete-todo/<%= todo.id %>" class="close fa fa-trash" style="color:red"></a>
+                        <% if(!todo.completed){ %>
+                            <a href="/admin/complete-todo/<%= todo.id %>" class="close fa fa-check-square mr-2"
+                                style="color:green"></a>
+                            <% } %>
+                </div>
+            </li>
+            <% } %>
+    </ul>
+    <% } else { %>
+        <div class="alert alert-warning w-100 mx-auto">
+            <h4 class="alert-heading">هیچ کاری ثبت نشده است!</h4>
+        </div>
+        <% } %>
