@@ -1,16 +1,14 @@
-const express = require("express");
 const bodyParser = require("body-parser");
-
-const adminRoutes = require("./routes/admin");
-
-const { setStatics } = require("./utils/setStatics");
-
+const express = require("express");
 const app = express();
 
-// middlewares
+const adminRoutes = require("./routes/admin");
+const { setStatics } = require("./utils/setStatics");
+
+// body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// configure template engine
+// add ejs template engine
 app.set("view engine", "ejs");
 app.set("views", "views");
 
@@ -19,10 +17,12 @@ setStatics(app);
 
 // routes
 app.use("/admin", adminRoutes);
+
 app.get("/", (req, res) => {
   res.render("index", { pageTitle: "مدیریت کارها" });
 });
 
+// create server
 app.listen(3000, () => {
   console.log("Server is running...");
 });
