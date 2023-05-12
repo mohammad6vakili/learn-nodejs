@@ -23,3 +23,9 @@ exports.saveTodos = (todos, callback) => {
 exports.generateRandomId = () => {
   return Math.floor(Math.random() * 10000);
 };
+
+exports.getRemainingTodos = (callback) => {
+  this.getTodos((todos) => {
+    callback(todos.filter((todo) => todo.completed === false));
+  });
+};
