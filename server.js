@@ -4,6 +4,7 @@ const app = express();
 
 const adminRoutes = require("./routes/admin");
 const indexRoutes = require("./routes/index");
+const errorController = require("./controllers/error");
 const { setStatics } = require("./utils/setStatics");
 
 // body parser middleware
@@ -19,6 +20,7 @@ setStatics(app);
 // routes
 app.use("/admin", adminRoutes);
 app.use(indexRoutes);
+app.use(errorController.get404);
 
 // create server
 app.listen(3000, () => {
