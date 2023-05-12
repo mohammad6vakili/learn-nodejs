@@ -19,7 +19,7 @@ setStatics(app);
 app.use("/admin", adminRoutes);
 
 app.get("/", (req, res) => {
-  res.render("index", { pageTitle: "مدیریت کارها" });
+  res.render("index", { pageTitle: "مدیریت کارها", todos: [] });
 });
 
 // create server

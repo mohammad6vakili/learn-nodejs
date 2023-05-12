@@ -28,6 +28,23 @@
             <p class="d-inline col">کارهای انجام شده : <span class="badge badge-primary badge-pill">0</span></p>
             <p class="d-inline col">کارهای باقی مانده : <span class="badge badge-warning badge-pill">10</span></p>
         </div>
+        <% if(todos.length> 0){ %>
+            <ul class="list-unstyled">
+                <% for(let todo of todos){ %>
+                    <li>
+                        <div class="alert alert-secondary">
+                            <% todo.text %>
+                                <a href="#" class="close fa fa-trash" style="color:red"></a>
+                                <a href="#" class="close fa fa-check-square mr-2" style="color:green"></a>
+                        </div>
+                    </li>
+                    <% } %>
+            </ul>
+            <% } else { %>
+                <div class="alert alert-warning w-100 mx-auto">
+                    <h4 class="alert-heading">هیچ کاری ثبت نشده است!</h4>
+                </div>
+                <% } %>
     </div>
 </body>
 
