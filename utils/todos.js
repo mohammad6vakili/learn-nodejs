@@ -26,12 +26,12 @@ exports.generateRandomId = () => {
 
 exports.getRemainingTodos = (callback) => {
   this.getTodos((todos) => {
-    callback(todos.filter((todo) => todo.completed === false));
+    callback(todos.filter((todo) => todo.completed === false).length);
   });
 };
 
 exports.getCompletedTodos = (callback) => {
   this.getTodos((todos) => {
-    callback(todos.filter((todo) => todo.completed === true));
+    callback(todos.filter((todo) => todo.completed === true).length);
   });
 };
