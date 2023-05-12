@@ -21,30 +21,27 @@ class Todo {
       });
     });
   }
+
   static fetchTodos(callback) {
-    fs.readFile(filePath, (err, data) => {
-      if (err) return [];
-      const todos = JSON.parse(data);
+    todoUtils.getTodos((todos) => {
       callback(todos);
     });
   }
 
   static deleteTodo(id, callback) {
-    fs.readFile(filePath, (err, data) => {
-      const todos = JSON.parse(data);
+    todoUtils.getTodos((todos) => {
       const filteredTodos = todos.filter((todo) => todo.id != id);
-      fs.writeFile(filePath, JSON.stringify(filteredTodos), (err) => {
+      todoUtils.saveTodos(filteredTodos, (err) => {
         callback(err);
       });
     });
   }
 
   static completeTodo(id, callback) {
-    fs.readFile(filePath, (err, data) => {
-      const todos = JSON.parse(data);
+    todoUtils.getTodos((todos) => {
       let todoIndex = todos.findIndex((todo) => todo.id == id);
       todos[todoIndex].completed = true;
-      fs.writeFile(filePath, JSON.stringify(todos), (err) => {
+      todoUtils.saveTodos(todos, (err) => {
         callback(err);
       });
     });
