@@ -2,6 +2,8 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 
+const sequelize = require("./utils/database");
+
 const adminRoutes = require("./routes/admin");
 const indexRoutes = require("./routes/index");
 const errorController = require("./controllers/error");
@@ -23,6 +25,14 @@ app.use(indexRoutes);
 app.use(errorController.get404);
 
 // create server
-app.listen(3000, () => {
-  console.log("Server is running...");
-});
+sequelize
+  .sync()
+  .then((result) => {
+    console.log("result is =>", result);
+    app.listen(3000, () => {
+      console.log("Server is running...");
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
